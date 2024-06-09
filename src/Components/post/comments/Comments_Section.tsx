@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PostInterface } from '../../../Pages/home'
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -164,7 +164,6 @@ function CommentSection(props: Props) {
   // comment editing
   // managing upvotes and downvotes
   const upVote = async (commentId : string) => {
-    const commentRef = doc(db, "comments", commentId);
     const votesRef = collection(db, "votes");
     const q = query(votesRef, where("commentId", "==", commentId));
     const data = await getDocs(q);
@@ -221,7 +220,6 @@ function CommentSection(props: Props) {
     updateVotes(commentId, totalVotes);
   }
   const downVote = async (commentId : string) => {
-    const commentRef = doc(db, "comments", commentId);
     const votesRef = collection(db, "votes");
     const q = query(votesRef, where("commentId", "==", commentId));
     const data = await getDocs(q);

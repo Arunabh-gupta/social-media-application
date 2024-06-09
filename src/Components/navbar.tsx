@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {auth} from '../config/firebase'
 import { signOut } from 'firebase/auth';
@@ -36,8 +36,8 @@ function Navbar() {
         <>
             <Link to="/create-post"><button>Create Post</button></Link>
             <div className="UserInfo">
-                <h1 className='UserName'>{auth.currentUser.displayName}</h1>
-                <img src={auth.currentUser.photoURL?.toString()} alt="" />
+                <h1 className='UserName'>{user.displayName}</h1>
+                <img src={user.photoURL?.toString()} alt="" />
             </div>
             <div className="Logout">
               <button  onClick={logout}>Logout</button>

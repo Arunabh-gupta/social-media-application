@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { signInWithPopup } from 'firebase/auth'
 import { provider, auth } from '../config/firebase'
 import { useNavigate } from 'react-router-dom'

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { PostInterface } from '../../Pages/home'
 import './post.css'
 import { collection, query, addDoc, where, getDocs, doc, deleteDoc } from "firebase/firestore"
