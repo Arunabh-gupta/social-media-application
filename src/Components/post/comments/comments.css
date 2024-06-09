@@ -1,0 +1,156 @@
+/* comments.css */
+
+.Comment-Section {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Comment-Box {
+  margin-bottom: 20px;
+}
+
+.Input-Body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+}
+
+textarea::placeholder {
+  color: #aaa;
+}
+
+.Empty-Comment-Error-Msg {
+  margin-top: 5px;
+  color: #e74c3c;
+}
+
+.submit-button {
+  text-align: right;
+}
+
+.submit-button button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button button:hover {
+  background-color: #2980b9;
+}
+
+.Comment-List {
+  margin-top: 20px;
+}
+
+.Comment {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Comment-Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.User-Name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.Comment-Body {
+  margin-bottom: 10px;
+}
+
+.Comment-Body p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.Comment-Footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Comment-Footer a,
+.Comment-Footer button {
+  margin-right: 10px;
+  color: #3498db;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.Comment-Footer a:hover,
+.Comment-Footer button:hover {
+  color: #2980b9;
+}
+
+.Upvotes-Downvotes {
+  display: flex;
+  align-items: center;
+}
+
+.Upvotes-Downvotes a {
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.Option-List {
+  display: flex;
+  gap: 10px;
+}
+
+.Option-List button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #e74c3c;
+  display: flex;
+  align-items: center;
+}
+
+.Option-List button:hover {
+  color: #c0392b;
+}
+
+.Reply-Section {
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 2px solid #3498db;
+}
+
+.Replies {
+  padding-left: 20px;
+  margin-top: 10px;
+  border-left: 2px solid #3498db;
+}

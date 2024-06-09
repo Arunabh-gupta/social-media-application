@@ -1,0 +1,72 @@
+/* Navbar.css */
+
+.Navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  .Navbar a {
+    text-decoration: none;
+    margin-right: 20px;
+  }
+  
+  .Navbar button {
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #4285f4, #357ae8);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Navbar button:hover {
+    background: linear-gradient(135deg, #357ae8, #4285f4);
+    transform: translateY(-2px);
+  }
+  
+  .UserInfo {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .UserName {
+    margin-right: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .UserInfo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #4285f4;
+  }
+  
+  .Logout button {
+    margin-left: 10px;
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Logout button:hover {
+    background: linear-gradient(135deg, #d32f2f, #f44336);
+    transform: translateY(-2px);
+  }
+  

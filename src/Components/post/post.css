@@ -1,0 +1,78 @@
+/* post.css */
+
+.Post {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 600px; /* Set a maximum width for each post */
+  margin: 20px auto; /* Center align posts */
+}
+
+.Post:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.Header {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.Header h2 {
+  font-size: 1.5em;
+  margin: 0;
+  color: #333333;
+}
+
+.Body {
+  margin-bottom: 15px;
+}
+
+.Body p {
+  font-size: 1em;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.Footer h4 {
+  font-size: 1em;
+  color: #888888;
+  margin: 0;
+  order: 2; /* Position username to the right */
+}
+
+.Reactions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1; /* Ensure reactions take available space */
+}
+
+.Reactions .Like-Symbol, .Reactions .Comment-Symbol {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 15px; /* Space between like and comment icons */
+}
+
+.Reactions .Like-Symbol h4 {
+  margin-left: 5px;
+  font-size: 1em;
+  color: #555555;
+}
+
+.Reactions .Like-Symbol:hover, .Reactions .Comment-Symbol:hover {
+  color: #007bff;
+}

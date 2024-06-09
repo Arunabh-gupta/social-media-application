@@ -1,0 +1,173 @@
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { collection, query, addDoc, where, getDocs, doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../../config/firebase';
+import { PostInterface } from '../../Pages/home';
+import './comments/comments.css';
+
+interface Props {
+  postInfo: PostInterface;
+}
+
+interface CommentDesc {
+  description: string;
+}
+
+export interface Comment {
+  postId: string;
+  userId: string;
+  username: string;
+  description: string;
+  timestamp: any;
+  commentId: string;
+}
+
+function CommentSection(props: Props) {
+  const [comments, setComments] = useState<Comment[]>([]);
+  const commentsRef = collection(db, 'comments');
+
+  const schema = yup.object().shape({
+    description: yup.string().required('Comment description is required'),
+  });
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<CommentDesc>({
+    resolver: yupResolver(schema),
+  });
+
+  const getComments = async () => {
+    try {
+      const q = query(commentsRef, where('postId', '==', props.postInfo.postId));
+      const data = await getDocs(q);
+      const commentsList = data.docs.map((doc) => ({
+        commentId: doc.id,
+        ...doc.data(),
+      })) as Comment[];
+
+      setComments(commentsList);
+    } catch (error) {
+      console.log('Something went wrong while fetching the comments: ' + error);
+    }
+  };
+
+  useEffect(() => {
+    getComments();
+  }, []);
+
+  const addComment = async (data: CommentDesc) => {
+    try {
+      await addDoc(commentsRef, {
+        userId: auth.currentUser?.uid,
+        username: auth.currentUser?.displayName,
+        postId: props.postInfo.postId,
+        description: data.description,
+        timestamp: new Date(),
+      });
+      reset();
+      getComments(); // Refresh comments after adding a new one
+    } catch (error) {
+      console.log("Couldn't add comment. Something went wrong: " + error);
+    }
+  };
+
+  const onSubmit = (data: CommentDesc) => {
+    addComment(data);
+    reset();
+  };
+
+  function CommentBox() {
+    return (
+      <div className='CommentBox'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="header">
+            <img src={auth.currentUser?.photoURL?.toString()} alt="" />
+            <h3>{auth.currentUser?.displayName}</h3>
+          </div>
+          <div className="body">
+            <textarea placeholder='...' {...register('description')}></textarea>
+            {errors.description && <p className="error-message">{errors.description.message}</p>}
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
+
+  return (
+    <div className="Comment-Section">
+      {comments.length > 0 && comments.map((comment) => (
+        <CommentCard key={comment.commentId} data={comment} getComments={getComments} />
+      ))}
+      {CommentBox()}
+    </div>
+  );
+}
+
+interface CommentCardProps {
+  data: Comment;
+  getComments: () => Promise<void>;
+}
+
+function CommentCard({ data, getComments }: CommentCardProps) {
+  const [options, setOptions] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editedDescription, setEditedDescription] = useState(data.description);
+
+  const deleteComment = async () => {
+    try {
+      const docRef = doc(db, 'comments', data.commentId);
+      await deleteDoc(docRef);
+      console.log('Comment Deleted !!!');
+      setOptions(false);
+      getComments(); // Refresh comments after deletion
+    } catch (error) {
+      console.log('Something went wrong while deleting comment: ' + error);
+    }
+  };
+
+  const handleSaveEdit = async () => {
+    try {
+      const docRef = doc(db, 'comments', data.commentId);
+      await updateDoc(docRef, { description: editedDescription });
+      setEditMode(false);
+      console.log('Comment edited successfully !!!');
+      getComments(); // Refresh comments after editing
+    } catch (error) {
+      console.log('Something went wrong while editing the comment: ' + error);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditMode(false);
+    setEditedDescription(data.description);
+  };
+
+  return (
+    <div className='Comment'>
+      <div className="Comment-Header">
+        <h4>{data.username}</h4>
+        <button onClick={() => setOptions(!options)}>:</button>
+        {options && (
+          <div className="Options">
+            <button onClick={deleteComment}>Delete</button>
+            <button onClick={() => setEditMode(true)}>Edit</button>
+          </div>
+        )}
+      </div>
+      <div className="comment-body">
+        {editMode ? (
+          <>
+            <textarea value={editedDescription} onChange={(e) => setEditedDescription(e.target.value)}></textarea>
+            <button onClick={handleSaveEdit}>Save</button>
+            <button onClick={handleCancelEdit}>Cancel</button>
+          </>
+        ) : (
+          <p>{data.description}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export { CommentSection };

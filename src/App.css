@@ -1,0 +1,102 @@
+/* Login Page */
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #e0eafc, #cfdef3);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.Login h3 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.Login button {
+  padding: 14px 28px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #4285f4;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.Login button:hover {
+  background-color: #357ae8;
+  transform: scale(1.05);
+}
+
+/* Navbar component */
+.Navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.Navbar a {
+  text-decoration: none;
+  color: #4285f4;
+  margin-right: 20px;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.Navbar a:hover {
+  color: #357ae8;
+}
+
+.Navbar button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #4285f4;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.Navbar button:hover {
+  background-color: #357ae8;
+  transform: scale(1.05);
+}
+
+.UserInfo {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.UserName {
+  margin-right: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+.UserInfo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #4285f4;
+}
+
+/* Home.css */
+.Posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-color: #f9f9fb;
+  min-height: 100vh;
+  font-family: 'Lato', sans-serif;
+}
